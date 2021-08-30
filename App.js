@@ -1,111 +1,65 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- * @flow strict-local
- */
+import * as React from 'react';
 
-import React from 'react';
-import {
-  SafeAreaView,
-  ScrollView,
-  StatusBar,
-  StyleSheet,
-  Text,
-  useColorScheme,
-  View,
-} from 'react-native';
+import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
+import { NavigationContainer } from '@react-navigation/native';
+import Ionicons  from 'react-native-vector-icons/Ionicons';
 
-import {
-  Colors,
-  DebugInstructions,
-  Header,
-  LearnMoreLinks,
-  ReloadInstructions,
-} from 'react-native/Libraries/NewAppScreen';
+import {NoteScreen} from './src/Screens/NoteScreen/NoteScreen.js'
+import {InfoScreen} from './src/Screens/InfoScreen/InfoScreen.js'
+import {TaskScreen} from './src/Screens/TaskScreen/TaskScreen.js'
+import {StorageScreen} from './src/Screens/StorageScreen/StorageScreen.js'
 
-const Section = ({children, title}) => {
-  const isDarkMode = useColorScheme() === 'dark';
-  return (
-    <View style={styles.sectionContainer}>
-      <Text
-        style={[
-          styles.sectionTitle,
-          {
-            color: isDarkMode ? Colors.white : Colors.black,
-          },
-        ]}>
-        {title}
-      </Text>
-      <Text
-        style={[
-          styles.sectionDescription,
-          {
-            color: isDarkMode ? Colors.light : Colors.dark,
-          },
-        ]}>
-        {children}
-      </Text>
-    </View>
-  );
-};
+const Tab = createMaterialTopTabNavigator();
 
-const App = () => {
-  const isDarkMode = useColorScheme() === 'dark';
-
-  const backgroundStyle = {
-    backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
-  };
-
-  return (
-    <SafeAreaView style={backgroundStyle}>
-      <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
-      <ScrollView
-        contentInsetAdjustmentBehavior="automatic"
-        style={backgroundStyle}>
-        <Header />
-        <View
-          style={{
-            backgroundColor: isDarkMode ? Colors.black : Colors.white,
-          }}>
-          <Section title="Step One">
-            Edit <Text style={styles.highlight}>App.js</Text> to change this
-            screen and then come back to see your edits.
-          </Section>
-          <Section title="See Your Changes">
-            <ReloadInstructions />
-          </Section>
-          <Section title="Debug">
-            <DebugInstructions />
-          </Section>
-          <Section title="Learn More">
-            Read the docs to discover what to do next:
-          </Section>
-          <LearnMoreLinks />
-        </View>
-      </ScrollView>
-    </SafeAreaView>
-  );
-};
-
-const styles = StyleSheet.create({
-  sectionContainer: {
-    marginTop: 32,
-    paddingHorizontal: 24,
-  },
-  sectionTitle: {
-    fontSize: 24,
-    fontWeight: '600',
-  },
-  sectionDescription: {
-    marginTop: 8,
-    fontSize: 18,
-    fontWeight: '400',
-  },
-  highlight: {
-    fontWeight: '700',
-  },
-});
+function App() {
+	return (
+		<NavigationContainer>
+			<Tab.Navigator
+				initialRouteName="Note"
+				tabBarPosition = 'bottom'
+				screenOptions={({ route }) => ({
+					tabBarShowIcon: true,
+					tabBarShowLabel: false,
+					tabBarIcon: ({ focused, color, size }) => {
+					let iconName;
+					if (route.name === 'Note') {
+						iconName = focused ? 'create-outline' : 'create';
+					} else if (route.name === 'Task') {
+						iconName = focused ? 'clipboard-outline' : 'clipboard';
+					} else if (route.name === 'Storage') {
+						iconName = focused ? 'cube-outline' : 'cube';
+					} else if (route.name === 'Info') {
+						iconName = focused ? 'grid-outline' : 'grid';
+					}
+		
+					return <Ionicons  name={iconName} size={40} style={{marginTop: -10, alignSelf: 'center', height: 40, aspectRatio: 1 }} color={color}/>;
+					},
+					tabBarActiveTintColor: 'gray',
+					tabBarInactiveTintColor: 'gray',
+					tabBarIndicatorStyle: {
+						backgroundColor: "gray"
+					}
+				})}
+			>
+				<Tab.Screen
+					name="Note"
+					component={NoteScreen}
+				/>
+				<Tab.Screen
+					name="Task"
+					component={TaskScreen}
+				/>
+				<Tab.Screen
+					name="Storage"
+					component={StorageScreen}
+				/>
+				<Tab.Screen
+					name="Info"
+					component={InfoScreen}
+				/>
+			</Tab.Navigator>
+		</NavigationContainer>
+	);
+}
 
 export default App;
