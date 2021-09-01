@@ -1,7 +1,7 @@
 'use strict';
 import {StyleSheet} from 'react-native';
 
-export default StyleSheet.create({
+export const CommonStyles = StyleSheet.create({
   ScreenView: {
     flex: 1,
     alignItems: 'center',
@@ -9,5 +9,8 @@ export default StyleSheet.create({
 	  height: "100%",
 	  width: "84%",
 	  marginTop: "5%",
+    alignSelf: 'center',
   },
 });
+
+export default CommonStyles;

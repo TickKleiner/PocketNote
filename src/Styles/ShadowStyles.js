@@ -1,8 +1,8 @@
 'use strict';
 import {StyleSheet} from 'react-native';
 
-export default StyleSheet.create({
-  BaseShadow: {
+export const ShadowStyles = StyleSheet.create({
+  baseShadow: {
     shadowColor: "#000000",
     shadowOffset: {
       width: 0,
@@ -13,3 +13,5 @@ export default StyleSheet.create({
     elevation: 8,
   },
 });
+
+export default ShadowStyles;

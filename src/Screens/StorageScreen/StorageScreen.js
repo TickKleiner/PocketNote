@@ -1,16 +1,16 @@
 import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
-import ShadowStyle from '../../Styles/ShadowStyle.js';
-import TextStyle from '../../Styles/TextStyle.js';
-import CommonStyle from '../../Styles/CommonStyle.js';
+import {ShadowStyles} from '../../Styles/ShadowStyles.js';
+import {TextStyles} from '../../Styles/TextStyles.js';
+import {CommonStyles} from '../../Styles/CommonStyles.js';
 
 export function StorageScreen(){
 	return (
     <View flex={1} alignItems='center'>
-		  <View style={CommonStyle.ScreenView} justifyContent='center'>
-			  <View style={[StorageScreenStyle.main_box, ShadowStyle.BaseShadow]}>
-				  <Text style={TextStyle.HeaderStyle}>STORAGE SCREEN</Text>
-				  <Text style={TextStyle.LabelStyle}>Coming soon...</Text>
+		  <View style={CommonStyles.ScreenView} justifyContent='center'>
+			  <View style={[StorageScreenStyle.main_box, ShadowStyles.baseShadow]}>
+				  <Text style={TextStyles.HeaderStyle}>STORAGE SCREEN</Text>
+				  <Text style={TextStyles.LabelStyle}>Coming soon...</Text>
 			  </View>
       </View>
     </View>

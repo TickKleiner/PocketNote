@@ -1,23 +1,23 @@
 import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
-import ShadowStyle from '../../Styles/ShadowStyle.js';
-import TextStyle from '../../Styles/TextStyle.js';
-import CommonStyle from '../../Styles/CommonStyle.js';
+import {ShadowStyles} from '../../Styles/ShadowStyles.js';
+import {TextStyles} from '../../Styles/TextStyles.js';
+import {CommonStyles} from '../../Styles/CommonStyles.js';
 
 export function TaskScreen(){
 	return (
     <View flex={1} alignItems='center'>
-		  <View style={CommonStyle.ScreenView} justifyContent='center'>
-		    <View style={[TaskScreenStyle.main_box, ShadowStyle.BaseShadow]}>
-			    <Text style={TextStyle.HeaderStyle}>TASK SCREEN</Text>
-			    <Text style={TextStyle.LabelStyle}>Coming soon...</Text>
+		  <View style={CommonStyles.ScreenView} justifyContent='center'>
+		    <View style={[TaskScreenStyles.main_box, ShadowStyles.baseShadow]}>
+			    <Text style={TextStyles.HeaderStyle}>TASK SCREEN</Text>
+			    <Text style={TextStyles.LabelStyle}>Coming soon...</Text>
 		    </View>
 		  </View>
     </View>
 	);
 }
 
-const TaskScreenStyle = StyleSheet.create({
+const TaskScreenStyles = StyleSheet.create({
 	main_box: {
 		backgroundColor: "#FFFFFF",
 		borderRadius: 15,
