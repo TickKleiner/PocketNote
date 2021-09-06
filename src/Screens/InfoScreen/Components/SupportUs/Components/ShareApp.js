@@ -1,11 +1,22 @@
 import React, { useMemo } from 'react'
-import { View, Linking } from 'react-native'
+import { View, Share } from 'react-native'
 import Ionicons  from 'react-native-vector-icons/Ionicons'
-import { TextIconButton } from '../../../../../../Components/TextIconButton.js'
+import { TextIconButton } from '../../../../../Components/TextIconButton.js'
 
-export function AboutUs(){
+const onShare = async (share_message) => {
+  try {
+    const result = await Share.share({
+      message:
+        share_message,
+    });
+  } catch (error) {
+    alert(error.message);
+  }
+}
+
+export function ShareApp(){
   const image = useMemo(() => {
-		let image = Ionicons.getImageSourceSync('people', 40, '#4285F4');
+		let image = Ionicons.getImageSourceSync('arrow-redo', 40, '#4285F4');
     return (image);
   }, []);
 
@@ -23,17 +34,11 @@ export function AboutUs(){
         icon={image}
         textColor={textColor}
         disabledTextColor={disabledTextColor}
-        text="ABOUT US"
-        onPress={() => {
-          Linking.openURL("https://github.com/Enderdroid")
-            .catch(err => {
-              console.error("Failed opening page because: ", err)
-              alert('Failed to open page')
-            })
-        }}
+        text="SHARE"
+        onPress={() => onShare("My git hub - https://github.com/Enderdroid")}
       />
     </View>
   );
 }
 
-export default AboutUs;
+export default ShareApp;
