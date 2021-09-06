@@ -7,10 +7,33 @@ import {CommonStyles} from '../../Styles/CommonStyles.js';
 export function TaskScreen(){
 	return (
     <View flex={1} alignItems='center'>
+<<<<<<< HEAD
 		  <View style={CommonStyles.ScreenView} justifyContent='center'>
 		    <View style={[TaskScreenStyles.main_box, ShadowStyles.baseShadow]}>
 			    <Text style={TextStyles.HeaderStyle}>TASK SCREEN</Text>
 			    <Text style={TextStyles.LabelStyle}>Coming soon...</Text>
+=======
+<<<<<<< Updated upstream
+		  <View style={CommonStyle.ScreenView} justifyContent='center'>
+		    <View style={[TaskScreenStyle.main_box, ShadowStyle.BaseShadow]}>
+			    <Text style={TextStyle.HeaderStyle}>TASK SCREEN</Text>
+			    <Text style={TextStyle.LabelStyle}>Coming soon...</Text>
+=======
+		  <View style={CommonStyles.ScreenView} justifyContent='center'>
+		    <View style={[TaskScreenStyles.main_box, ShadowStyles.baseShadow]}>
+			    <Text style={TextStyles.largeHeader}>TASK SCREEN</Text>
+			    <Text style={TextStyles.label}>Coming soon...</Text>
+<<<<<<< Updated upstream
+<<<<<<< Updated upstream
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
+>>>>>>> Stashed changes
+=======
+>>>>>>> Stashed changes
+=======
+>>>>>>> Stashed changes
+>>>>>>> StorageScreen
 		    </View>
 		  </View>
     </View>

@@ -7,10 +7,24 @@ import {CommonStyles} from '../../Styles/CommonStyles.js';
 export function NoteScreen(){
 	return (
     <View flex={1} alignItems='center'>
+<<<<<<< HEAD
 		  <View style={CommonStyles.ScreenView} justifyContent='center'>
 			  <View style={[NoteScreenStyle.main_box, ShadowStyles.baseShadow]}>
 				  <Text style={TextStyles.HeaderStyle}>NOTE SCREEN</Text>
 				  <Text style={TextStyles.LabelStyle}>Coming soon...</Text>
+=======
+<<<<<<< Updated upstream
+		  <View style={CommonStyle.ScreenView} justifyContent='center'>
+			  <View style={[NoteScreenStyle.main_box, ShadowStyle.BaseShadow]}>
+				  <Text style={TextStyle.HeaderStyle}>NOTE SCREEN</Text>
+				  <Text style={TextStyle.LabelStyle}>Coming soon...</Text>
+=======
+		  <View style={CommonStyles.ScreenView} justifyContent='center'>
+			  <View style={[NoteScreenStyle.main_box, ShadowStyles.baseShadow]}>
+				  <Text style={TextStyles.largeHeader}>NOTE SCREEN</Text>
+				  <Text style={TextStyles.label}>Coming soon...</Text>
+>>>>>>> Stashed changes
+>>>>>>> StorageScreen
         </View>
 		  </View>
     </View>
