@@ -41,7 +41,6 @@ export const TextStyles = StyleSheet.create({
 		fontWeight: '700',
 		lineHeight: 34,
   }
-  
 });
 
 export default TextStyles;

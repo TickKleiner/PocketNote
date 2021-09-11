@@ -6,6 +6,8 @@ export const userSlice = createSlice({
     isSigned: false,
     isSignedGoogle: false,
     currentUser: null,
+    filesData: null,
+    deviceData: null,
   },
   reducers: {
     signedWithGoogle: (state) => {
@@ -18,10 +20,16 @@ export const userSlice = createSlice({
     },
     setCurentUser: (state, action) => {
       state.currentUser = action.payload;
+    },
+    setFilesData: (state, action) => {
+      state.filesData = action.payload;
+    },
+    setDeviceData: (state, action) => {
+      state.deviceData = action.payload;
     }
   }
 });
 
-export const { signedWithGoogle, signedOutGoogle, setCurentUser } = userSlice.actions;
+export const { signedWithGoogle, signedOutGoogle, setCurentUser, setFilesData, setDeviceData } = userSlice.actions;
 
 export default userSlice.reducer;

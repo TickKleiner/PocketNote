@@ -1,9 +1,6 @@
 import React, {useState, useEffect} from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import { View } from 'react-native';
 import Ionicons  from 'react-native-vector-icons/Ionicons';
-
-import {ShadowStyles} from '../../Styles/ShadowStyles.js';
-import {TextStyles} from '../../Styles/TextStyles.js';
 import {CommonStyles} from '../../Styles/CommonStyles.js';
 import {TopBar} from './Components/TopBar/TopBar.js'
 import {ProfileField} from './Components/ProfileField/ProfileField.js'

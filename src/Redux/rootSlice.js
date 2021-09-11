@@ -4,7 +4,8 @@ export const rootSlice = createSlice({
   name: "root",
   initialState: {
     busy: false,
-    online: true
+    online: true,
+    lastScreenName: "",
   },
   reducers: {
     toggleBusy: (state, action) => {
@@ -12,10 +13,13 @@ export const rootSlice = createSlice({
     },
     toggleOnline: (state, action) => {
       state.online = action.payload;
+    },
+    setLastScreenName: (state, action) => {
+      state.lastScreenName = action.payload;
     }
   }
 });
 
-export const { toggleBusy, toggleOnline } = rootSlice.actions;
+export const { toggleBusy, toggleOnline, setLastScreenName } = rootSlice.actions;
 
 export default rootSlice.reducer;

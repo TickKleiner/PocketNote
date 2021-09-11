@@ -1,41 +1,41 @@
-import React, {Component, useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
 import { View, StyleSheet, Text } from 'react-native';
 import publicIP from 'react-native-public-ip';
 
-export class GetLocation extends Component{
-	constructor() {
-    super();
-    this.state = {
-      city: 'Undefined'
-    }
-		this.getCity();
-  }
-
-  getCity(){
-		publicIP().then(ip => {
-			fetch('http://ip-api.com/json/' + ip)
-			.then(response => response.json())
-			.then(data =>
-				this.setState({
-					city: data.city
-				})
-			)
-			.catch(error => {
-				console.log(error);
-			});
-		}).catch(error => {
+const getCity = async (setCity) => {
+	publicIP().then(ip => {
+		fetch('http://ip-api.com/json/' + ip)
+		.then(response => response.json())
+		.then(data =>
+			setCity(data.city)
+		)
+		.catch(error => {
 			console.log(error);
 		});
-	}
+	}).catch(error => {
+		console.log(error);
+	});
+}
 
-	render() {
-  	return(
-    	<View>
-    	  <Text style={GetLocationStyles.cityStyle}>
-			  	{this.state.city}
-			  </Text>
-    	</View>
-  );}
+
+export function GetLocation() {
+	const [city, setCity] = useState('Undefined');
+  const { online } = useSelector((state) => state.root);
+
+	useEffect(() => {
+    if (online){
+      getCity(setCity);
+    }
+  }, [online]);
+
+  return(
+    <View>
+      <Text style={GetLocationStyles.cityStyle}>
+		  	{city}
+		  </Text>
+    </View>
+  );
 }
 
 const GetLocationStyles = StyleSheet.create({

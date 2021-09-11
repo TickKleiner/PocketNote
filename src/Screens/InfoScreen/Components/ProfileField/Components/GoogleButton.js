@@ -1,4 +1,4 @@
-import React, { Component, useEffect, useMemo } from 'react'
+import React, { useEffect, useMemo } from 'react'
 import { TextIconButton } from '../../../../../Components/TextIconButton'
 import Ionicons  from 'react-native-vector-icons/Ionicons'
 import { View } from 'react-native'
@@ -20,20 +20,23 @@ async function signOut(dispatch, currentUser) {
 export function GoogleButton() {
   const dispatch = useDispatch();
   const { currentUser, isSignedGoogle } = useSelector((state) => state.user);
+  const { busy, online } = useSelector((state) => state.root);
   const googleIcon = useMemo(() => {
 		let image = Ionicons.getImageSourceSync('logo-google', 40, '#4285F4');
     return (image);
   }, []);
   useEffect(() => {
-    init(dispatch);
-  }, []);
+    if (online){
+      init(dispatch);
+    }
+  }, [online]);
 
-  const { busy } = useSelector((state) => state.root);
   const buttonText = busy ? "LOADING" : isSignedGoogle ? "SIGN OUT" : "SIGN IN WITH GOOGLE";
+  const disabled = !(!busy && online);
 	return (
     <View height="20%" width="94%" marginTop="1.5%" alignSelf="center">
       <TextIconButton
-        disabled={busy ? true : false}
+        disabled={disabled}
         backgroundColor="#FFFFFF"
         disabledBackgroundColor="#EEEEEE"
         icon={googleIcon}

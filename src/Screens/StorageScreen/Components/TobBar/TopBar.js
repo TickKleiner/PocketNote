@@ -1,5 +1,5 @@
 import React, { useMemo }  from "react";
-import { View, Image, StyleSheet, Text } from "react-native";
+import { View, StyleSheet } from "react-native";
 import Ionicons  from 'react-native-vector-icons/Ionicons'
 import { useSelector } from 'react-redux'
 import ShadowStyles from "../../../../Styles/ShadowStyles";

@@ -1,5 +1,5 @@
-import React, { useEffect } from 'react';
-import { View, StyleSheet, Image, TouchableOpacity } from 'react-native';
+import React from 'react';
+import { StyleSheet, Image, TouchableOpacity } from 'react-native';
 import ShadowStyle from '../Styles/ShadowStyles.js';
 
 export function IconButton(props) {
@@ -18,7 +18,7 @@ export function IconButton(props) {
       IconButtonStyles.background,
       ShadowStyle.baseShadow
     ]}
-      onPress={async () => await props.asyncOnPress}
+      onPress={async () => {await props.AsyncOnPress()}}
       disabled={props.disabled}
     >
       <Image

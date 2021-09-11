@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import { TextIconButton } from '../../../../../Components/TextIconButton.js'
-import Icons  from 'react-native-vector-icons/FontAwesome';
 import { View } from 'react-native';
 
 export class  YandexButton extends Component{

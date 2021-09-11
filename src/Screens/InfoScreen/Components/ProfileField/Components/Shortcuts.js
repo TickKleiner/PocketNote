@@ -1,5 +1,5 @@
-import React, { Component } from 'react';
-import { View, Text, Image, StyleSheet, TouchableOpacity } from 'react-native';
+import React from 'react';
+import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { ShadowStyles } from '../../../../../Styles/ShadowStyles.js'
 import { TextStyles } from '../../../../../Styles/TextStyles.js'

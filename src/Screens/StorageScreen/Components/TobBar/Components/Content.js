@@ -2,8 +2,6 @@ import googleApi from "../../../../../Utils/GoogleAPI";
 import React, {useEffect, useState}  from "react";
 import { View, Image, StyleSheet, Text } from "react-native";
 
-let usage = null;
-
 export function Content(props) {
   const [usage, setUsage] = useState(null);
   let driveName = "no drive connected"

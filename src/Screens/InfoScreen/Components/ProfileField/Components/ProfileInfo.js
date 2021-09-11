@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { View, Text, Image, StyleSheet } from 'react-native';
 import {TextStyles} from '../../../../../Styles/TextStyles.js'
-import { useDispatch, useSelector } from 'react-redux'
+import { useSelector } from 'react-redux'
 
 export function ProfileInfo(){
   const { isSigned, currentUser, isSignedGoogle } = useSelector((state) => state.user);

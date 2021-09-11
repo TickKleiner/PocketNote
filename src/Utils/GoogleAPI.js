@@ -6,12 +6,12 @@ import {
   ListQueryBuilder
 } from "@robinbobin/react-native-google-drive-api-wrapper"
 
-
 class GoogleApi {
   isSignedInGoogle = false;
   currentUser = null;
   folderPrefixName = "pocket_note_folder_";
   fullFolderName = "";
+	folderId = "";
 	gdrive = null;
 
   init = async () => {
@@ -22,13 +22,11 @@ class GoogleApi {
 			webClientId: '993474243220-3tcbu38i6e0a974maf8qjk030rnf0ec7.apps.googleusercontent.com'
 		});
     this.gdrive = new GDrive();
-		console.log('Google API created');
 		this.isSignedInGoogle = await this.isSignedIn();
 		return (this.isSignedInGoogle);
 	}
 
   signIn = async () => {
-		console.log("signing in");
 		try {
 			await GoogleSignin.hasPlayServices({ showPlayServicesUpdateDialog: true });
 			await GoogleSignin.signIn();
@@ -74,7 +72,7 @@ class GoogleApi {
       return;
     }
 
-		await this.gdrive.files.createIfNotExists({
+		const response = await this.gdrive.files.createIfNotExists({
 			q: new ListQueryBuilder()
 				.e("name", this.fullFolderName)
 				.and()
@@ -89,6 +87,7 @@ class GoogleApi {
 					parents: ["root"]
 				})
 		)
+		this.folderId = response.result.id;
 	}
 
 	uploadFile = async (fileName, fileContent, fileType) => {
@@ -96,7 +95,6 @@ class GoogleApi {
       alert("Please sign in with google");
       return;
     }
-
     let id = null;
 		try {
 			this.gdrive.accessToken = (await GoogleSignin.getTokens()).accessToken;
@@ -128,7 +126,7 @@ class GoogleApi {
       return;
     }
 
-    let fileContent = null;
+    let fileContent = undefined;
 		try{
 			this.gdrive.accessToken = (await GoogleSignin.getTokens()).accessToken;
 			fileContent = await this.gdrive.files.getBinary(fileId);
@@ -139,6 +137,21 @@ class GoogleApi {
 		return fileContent;
 	}
 
+	deleteFile = async (fileId) => {
+		if (!this.isSignedInGoogle) {
+      alert("Please sign in with google");
+      return;
+    }
+		let response = null;
+		try{
+			this.gdrive.accessToken = (await GoogleSignin.getTokens()).accessToken;
+			response = await this.gdrive.files.delete(fileId);
+		} catch (error) {
+			alert('Error: ' + error);
+		}
+		return (response);
+	}
+
 	getFilesList = async () => {
     if (!this.isSignedInGoogle) {
       alert("Please sign in with google");
@@ -147,9 +160,11 @@ class GoogleApi {
 
     let filesList = null;
 		try{
+			this.gdrive.accessToken = (await GoogleSignin.getTokens()).accessToken;
+			await this.createFolder();
 			filesList = await this.gdrive.files.list({
 				q: new ListQueryBuilder()
-				.in(this.fullFolderName, "parents")
+				.in(this.folderId, "parents")
 			});
 		} catch (error) {
       filesList = null;
