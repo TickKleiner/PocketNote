@@ -82,10 +82,7 @@ class Controller {
       "Files": filesToUpload
     }
     const respose = await pocketNoteAPI.uploadFiles(currentUser.user.id, data);
-    if (respose.status == 200) {
-      alert("Files upload done");
-    }
-    else {
+    if (respose.status != 200) {
       alert("Something went wrong\nStatus: " + respose.status);
     }
     dispatch(toggleBusy(false));

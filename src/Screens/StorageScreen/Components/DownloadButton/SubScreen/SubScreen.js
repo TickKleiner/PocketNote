@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react';
+import React, { useMemo, useEffect } from 'react';
 import { View, FlatList, StyleSheet, PermissionsAndroid, Alert } from 'react-native'
 import controller from '../../../../../Utils/Controller';
 import { AsyncTextIconButton } from '../../../../../Components/AsyncTextIconButton.js'
@@ -103,6 +103,11 @@ export function SubScreen({ navigation, route }){
       console.log("Unknown error: " + err);
     }
   });
+
+  useEffect(() => {
+    if(!isSigned)
+      navigation.goBack();
+  }, [isSigned]);
 
   const icons = useMemo(() => {
 		const icons = {

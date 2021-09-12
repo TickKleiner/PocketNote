@@ -5,7 +5,7 @@ import { createMaterialTopTabNavigator } from '@react-navigation/material-top-ta
 import { NavigationContainer } from '@react-navigation/native';
 import Ionicons  from 'react-native-vector-icons/Ionicons';
 
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { toggleOnline } from './src/Redux/rootSlice.js';
 
 import {NoteScreen} from './src/Screens/NoteScreen/NoteScreen.js'
@@ -13,11 +13,15 @@ import {InfoScreen} from './src/Screens/InfoScreen/InfoScreen.js'
 import {TaskScreen} from './src/Screens/TaskScreen/TaskScreen.js'
 import {StorageScreen} from './src/Screens/StorageScreen/StorageScreen.js'
 
-const Tab = createMaterialTopTabNavigator();
+import { TextStyles } from './src/Styles/TextStyles.js';
+import Spinner from 'react-native-loading-spinner-overlay';
+import { Text } from 'react-native';
 
+const Tab = createMaterialTopTabNavigator();
 
 function App() {
 	const dispatch = useDispatch();
+	const { busy } = useSelector((state) => state.root);
 	return (
 		<InternetConnectionAlert
 			onChange={(connectionState) => {
@@ -25,6 +29,11 @@ function App() {
 				console.log("Connection State: ", connectionState);
 			}}
 		>
+			<Spinner
+        visible={busy}
+        textContent={'Loading...'}
+        textStyle={TextStyles.spinnerTextStyle}
+      />
 			<NavigationContainer>
 				<Tab.Navigator
 					initialRouteName="Note"

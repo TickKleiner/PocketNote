@@ -40,7 +40,10 @@ export const TextStyles = StyleSheet.create({
 		fontSize: 28,
 		fontWeight: '700',
 		lineHeight: 34,
-  }
+  },
+  spinnerTextStyle: {
+    color: '#FFF'
+  },
 });
 
 export default TextStyles;
